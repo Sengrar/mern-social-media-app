@@ -1,4 +1,5 @@
 import logo from "../assets/logo.png";
+import {Link} from "react-router-dom";
 import {
     Home,
     Search,
@@ -32,19 +33,19 @@ const Sidebar = () => {
                 </div>
 
                 <nav className="flex flex-col gap-6">
-                    <SidebarItem icon={<Home />} label="Home" active />
-                    <SidebarItem icon={<Search />} label="Search" />
-                    <SidebarItem icon={<Compass />} label="Explore" />
-                    <SidebarItem icon={<MessageCircle />} label="Messages" badge={3} />
-                    <SidebarItem icon={<Heart />} label="Notifications" badge={5} />
-                    <SidebarItem icon={<PlusSquare />} label="Create" />
-                    <SidebarItem icon={<User />} label="Profile" />
+                    <Link to="/"><SidebarItem icon={<Home />} label="Home" active /></Link>
+                    <Link to="/search"><SidebarItem icon={<Search />} label="Search" /></Link>
+                    <Link to="/explore"><SidebarItem icon={<Compass />} label="Explore" /></Link>
+                    <Link to="/messages"><SidebarItem icon={<MessageCircle />} label="Messages" badge={3} /></Link>
+                    <Link to="/notifications"><SidebarItem icon={<Heart />} label="Notifications" badge={5} /></Link>
+                    <Link to="/create"><SidebarItem icon={<PlusSquare />} label="Create" /></Link>
+                    <Link to="/profile"><SidebarItem icon={<User />} label="Profile" /></Link>
                 </nav>
             </div>
 
             {/* Bottom */}
 
-            <div>
+            <div><Link to="/profile">
                 <div className="flex items-center gap-3 cursor-pointer hover:bg-gray-800 p-2 rounded-lg transition">
                     <img
                         src="https://i.pravatar.cc/40"
@@ -52,10 +53,10 @@ const Sidebar = () => {
                         className="w-8 h-8 rounded-full object-cover"
                     />
                     <span className="hidden md:block">Himanshu</span>
-                </div>
+                </div></Link>
 
                 <div className="mt-3">
-                    <SidebarItem icon={<Menu />} label="More" />
+                    <Link to="/menu"><SidebarItem icon={<Menu />} label="More" /></Link>
                 </div>
             </div>
 

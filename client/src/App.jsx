@@ -4,7 +4,7 @@ import Sidebar from './components/Sidebar.jsx';
 import API from './api/axios.js'
 import Home from "./pages/Home.jsx";
 import { useEffect, useState } from "react"
-import {reactBrowser, routes, route} from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 // import './App.css'
 
@@ -20,11 +20,25 @@ function App() {
 
   return (
     <div className="flex bg-black text-white">
-      <Sidebar />
+      <BrowserRouter>
+        <Sidebar />
+
+        <div className="flex-1 ml-20 md:ml-64 flex justify-center">
+
+        <Routes>
+          
+        <Route path='/' element={<Home></Home>}></Route>
       
-      <div className="flex-1 ml-20 md:ml-64 flex justify-center">
-        <Home />
+      </Routes>
       </div>
+
+        
+
+      </BrowserRouter>
+
+      
+      
+      
     </div>
   )
 }
