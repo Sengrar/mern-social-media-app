@@ -1,5 +1,6 @@
 import logo from "../assets/logo.png";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
     Home,
     Search,
@@ -33,30 +34,75 @@ const Sidebar = () => {
                 </div>
 
                 <nav className="flex flex-col gap-6">
-                    <Link to="/"><SidebarItem icon={<Home />} label="Home" active /></Link>
-                    <Link to="/search"><SidebarItem icon={<Search />} label="Search" /></Link>
-                    <Link to="/explore"><SidebarItem icon={<Compass />} label="Explore" /></Link>
-                    <Link to="/messages"><SidebarItem icon={<MessageCircle />} label="Messages" badge={3} /></Link>
-                    <Link to="/notifications"><SidebarItem icon={<Heart />} label="Notifications" badge={5} /></Link>
-                    <Link to="/create"><SidebarItem icon={<PlusSquare />} label="Create" /></Link>
-                    <Link to="/profile"><SidebarItem icon={<User />} label="Profile" /></Link>
+
+                    <NavLink to="/" end>
+                        {({ isActive }) => (
+                            <SidebarItem icon={<Home />} label="Home" active={isActive} />
+                        )}
+                    </NavLink>
+
+                    <NavLink to="/search">
+                        {({ isActive }) => (
+                            <SidebarItem icon={<Search />} label="Search" active={isActive} />
+                        )}
+                    </NavLink>
+
+                    <NavLink to="/explore">
+                        {({ isActive }) => (
+                            <SidebarItem icon={<Compass />} label="Explore" active={isActive} />
+                        )}
+                    </NavLink>
+
+                    <NavLink to="/messages">
+                        {({ isActive }) => (
+                            <SidebarItem icon={<MessageCircle />} label="Messages" badge={3} active={isActive} />
+                        )}
+                    </NavLink>
+
+                    <NavLink to="/notifications">
+                        {({ isActive }) => (
+                            <SidebarItem icon={<Heart />} label="Notifications" badge={5} active={isActive} />
+                        )}
+                    </NavLink>
+
+                    <NavLink to="/create">
+                        {({ isActive }) => (
+                            <SidebarItem icon={<PlusSquare />} label="Create" active={isActive} />
+                        )}
+                    </NavLink>
+
+                    {/* <NavLink to="/profile">
+                        {({ isActive }) => (
+                            <SidebarItem icon={<User />} label="Profile" active={isActive} />
+                        )}
+                    </NavLink> */}
+
                 </nav>
             </div>
 
             {/* Bottom */}
 
-            <div><Link to="/profile">
-                <div className="flex items-center gap-3 cursor-pointer hover:bg-gray-800 p-2 rounded-lg transition">
-                    <img
-                        src="https://i.pravatar.cc/40"
-                        alt="profile"
-                        className="w-8 h-8 rounded-full object-cover"
+            <div><NavLink to="/profile">
+                {({ isActive }) => (
+                    <SidebarItem
+                        icon={
+                            <img
+                                src="https://i.pravatar.cc/40"
+                                className="w-6 h-6 rounded-full"
+                            />
+                        }
+                        label="Himanshu"
+                        active={isActive}
                     />
-                    <span className="hidden md:block">Himanshu</span>
-                </div></Link>
+                )}
+            </NavLink>
 
                 <div className="mt-3">
-                    <Link to="/menu"><SidebarItem icon={<Menu />} label="More" /></Link>
+                    <NavLink to="/menu">
+                        {({ isActive }) => (
+                            <SidebarItem icon={<Menu />} label="More" active={isActive} />
+                        )}
+                    </NavLink>
                 </div>
             </div>
 
@@ -87,7 +133,7 @@ const SidebarItem = ({ icon, label, active, badge }) => {
                     )}
                 </div>
 
-                <span className="hidden md:block text-sm font-medium">{label}</span>
+                <span className="hidden md:block text-base font-medium">{label}</span>
             </div>
         </div>
     );

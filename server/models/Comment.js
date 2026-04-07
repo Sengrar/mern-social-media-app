@@ -1,49 +1,45 @@
 import mongoose from "mongoose";
 
 const commentSchema = new mongoose.Schema({
-    postId:{
+    postId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Post",
         required: true
     },
-    userId:{
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: true
     },
-    text:{
+    text: {
         type: String,
         required: true,
         trim: true
     },
-    parentCommentId:{
+    parentCommentId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Comment",
-        default: "null"
+        default: null   // ✅ FIXED
     }
+}, { timestamps: true });
 
-}, {timestamps:true})
-
-// To set time and date format============
+// Format date
 commentSchema.set("toJSON", {
     transform: function (doc, ret) {
         const formatDate = (date) => {
-            return new Date(date)
-                .toLocaleString("en-IN", {
-                    timeZone: "Asia/Kolkata",
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    hour12: false
-                })
-                // .replace(/\//g, "-");
+            return new Date(date).toLocaleString("en-IN", {
+                timeZone: "Asia/Kolkata",
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false
+            });
         };
 
         ret.createdAt = formatDate(ret.createdAt);
         ret.updatedAt = formatDate(ret.updatedAt);
-
         return ret;
     }
 });

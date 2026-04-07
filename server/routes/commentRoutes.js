@@ -4,6 +4,8 @@ import { createComment, retrieveComment } from "../controllers/commentController
 import { auth } from '../middleware/authMiddleware.js';
 
 router.post('/', auth, createComment);
+// router.post('/', createComment);
 router.get('/', auth, retrieveComment);
+// router.get('/', retrieveComment);
 
 export default router;
